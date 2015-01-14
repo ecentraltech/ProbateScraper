@@ -17,6 +17,7 @@ public class Fiduciary {
 	private String fax;
 
 	public Fiduciary() {
+		//remember how this works
 		this.name = "";
 		this.representedBy = "";
 		this.addrLn1 = "";
