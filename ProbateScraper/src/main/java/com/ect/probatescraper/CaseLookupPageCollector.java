@@ -18,7 +18,8 @@ import java.util.Random;
 import org.apache.log4j.Logger;
 
 /**
- * Hello world!
+ * Traverses the open cases present on apps.ctprobate.gov by district to pull the individual 
+ * case details and put locally.
  *
  */
 public class CaseLookupPageCollector {
@@ -33,7 +34,7 @@ public class CaseLookupPageCollector {
     static Random random;
 	static int sleepMin = 2;
 	static int sleepMax = 20;
-	static boolean useLocalListFiles = true;
+	static boolean useLocalListFiles = false;
 
     public static void main( String[] args ) {
         LOG.info("CaseLookupPageCollector...");
@@ -41,12 +42,11 @@ public class CaseLookupPageCollector {
 
         //Obtain main or first page of the lookup, it provides a portion of the list and 
         //links to all of the other pages in the list
-        //String link = "http://www.google.com";
         String pageLink = "http://apps.ctprobate.gov/caselookup?CaseType=0&District=PD05&CaseStatusOption=Open";
         LOG.info("Going after page: " + pageLink);
         String fileNameSuffix = PageParserProbateList.getJulianWithMillis();  
         
-        //Remember the first page, since it contains links to all other pages
+        //Remember the first page, since it contains links to all other pages 
         File mainCaseListPageFile;
         if (useLocalListFiles) {
             //read file from the local
@@ -68,7 +68,7 @@ public class CaseLookupPageCollector {
         //During development, I'm trying no to go after pages more than once. The server is painfully slow
         File currentCaseListFile;
         int startAtPage = 2;
-        int endAtPage = 26;
+        int endAtPage = 27;
         for (int pageNumber = startAtPage; pageNumber < 1000; pageNumber++) {
         	pageLink = pageLinks.get(new Integer(pageNumber));
         	if (pageLink == null) {

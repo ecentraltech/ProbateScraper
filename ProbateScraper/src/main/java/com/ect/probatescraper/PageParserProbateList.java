@@ -173,8 +173,7 @@ public class PageParserProbateList {
     	output.print("Fiduciary2 Phone");
     	output.print(",");
     	output.print("Fiduciary2 Fax");
-    	output.print(",");
-    	
+    	output.print(",");    	
     	output.println("");
 	}
 	
